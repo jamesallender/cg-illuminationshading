@@ -6,6 +6,7 @@ in vec3 vertex_position;
 in vec3 vertex_normal;
 in vec2 vertex_texcoord;
 
+uniform vec3 light_ambient;
 uniform vec3 light_position;
 uniform vec3 light_color;
 uniform vec3 camera_position;

@@ -5,6 +5,7 @@ precision mediump float;
 in vec3 frag_pos;
 in vec3 frag_normal;
 
+uniform vec3 light_ambient;
 uniform vec3 light_position;
 uniform vec3 light_color;
 uniform vec3 camera_position;

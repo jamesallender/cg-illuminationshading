@@ -7,6 +7,7 @@ in vec3 diffuse;
 in vec3 specular;
 in vec2 frag_texcoord;
 
+uniform vec3 light_ambient;
 uniform vec3 light_position;
 uniform vec3 light_color;
 uniform vec3 camera_position;
