@@ -87,6 +87,7 @@ class GlApp {
             var theShader = this.algorithm + "_" + this.scene.models[i].shader;
 
             //model matrix set
+            // set model matrix
             glMatrix.mat4.identity(this.model_matrix);
             glMatrix.mat4.translate(this.model_matrix, this.model_matrix, this.scene.models[i].center);
             glMatrix.mat4.scale(this.model_matrix, this.model_matrix, this.scene.models[i].size);
@@ -94,10 +95,13 @@ class GlApp {
             //uploading to graphics card
             // upload color, then  matrices for projection, view, and model
             this.gl.uniform3fv(this.shader[theShader].uniform.material, this.scene.models[i].material.color);
+            // Lads data to the shaders
+            // accessing shaders variable
             this.gl.uniformMatrix4fv(this.shader[theShader].uniform.projection, false, this.projection_matrix);
             this.gl.uniformMatrix4fv(this.shader[theShader].uniform.view, false, this.view_matrix);
             this.gl.uniformMatrix4fv(this.shader[theShader].uniform.model, false, this.model_matrix);
 
+            //Bind vertex array after uploading data apply transform to model and draw
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
@@ -113,6 +117,7 @@ class GlApp {
 
 
             this.gl.uniform3fv(this.shader['emissive'].uniform.material, this.scene.light.point_lights[i].color);
+
             this.gl.uniformMatrix4fv(this.shader['emissive'].uniform.projection, false, this.projection_matrix);
             this.gl.uniformMatrix4fv(this.shader['emissive'].uniform.view, false, this.view_matrix);
             this.gl.uniformMatrix4fv(this.shader['emissive'].uniform.model, false, this.model_matrix);
