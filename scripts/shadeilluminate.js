@@ -9,19 +9,25 @@ class GlApp {
         }
 
         this.scene = scene;
-        this.algorithm = 'gouraud'
+        // Default set, but changed by drop down in browser
+        this.algorithm = 'gouraud';
+        // Sets inital shader objects to null
         this.shader = {gouraud_color: null, gouraud_texture: null,
                        phong_color: null,   phong_texture: null};
         this.vertex_position_attrib = 0;
         this.vertex_normal_attrib = 1;
         this.vertex_texcoord_attrib = 2;
 
+        // This matrix will contain the transforms
         this.projection_matrix = glMatrix.mat4.create();
+        // This matrix if for the trasformation to move the camera to the originand put the modle in the cononical vew volumne
         this.view_matrix = glMatrix.mat4.create();
+        // this is for projecting the model
         this.model_matrix = glMatrix.mat4.create();
 
         this.vertex_array = {plane: null, cube: null, sphere: null};
 
+        // Dpwnload files
         let gouraud_color_vs = this.GetFile('shaders/gouraud_color.vert');
         let gouraud_color_fs = this.GetFile('shaders/gouraud_color.frag');
         let gouraud_texture_vs = this.GetFile('shaders/gouraud_texture.vert');
@@ -33,6 +39,7 @@ class GlApp {
         let emissive_vs = this.GetFile('shaders/emissive.vert');
         let emissive_fs = this.GetFile('shaders/emissive.frag');
 
+        // load files
         Promise.all([gouraud_color_vs, gouraud_color_fs, gouraud_texture_vs, gouraud_texture_fs,
                      phong_color_vs, phong_color_fs, phong_texture_vs, phong_texture_fs,
                      emissive_vs, emissive_fs])
@@ -43,20 +50,24 @@ class GlApp {
     InitializeGlApp() {
         this.gl.viewport(0, 0, this.gl.drawingBufferWidth, this.gl.drawingBufferHeight);
         this.gl.clearColor(0.8, 0.8, 0.8, 1.0);
+        // Enables z buffer
         this.gl.enable(this.gl.DEPTH_TEST);
 
+        // Set models
         this.vertex_array.plane = CreatePlaneVao(this);
         this.vertex_array.cube = CreateCubeVao(this);
         this.vertex_array.sphere = CreateSphereVao(this);
 
         let fov = 45.0 * (Math.PI / 180.0);
         let aspect = this.canvas.width / this.canvas.height;
+        // Create projectipn matrix (the camera paramters like FOV )
         glMatrix.mat4.perspective(this.projection_matrix, fov, aspect, 1.0, 50.0);
 
         let cam_pos = this.scene.camera.position;
         let cam_target = glMatrix.vec3.create();
         let cam_up = this.scene.camera.up;
         glMatrix.vec3.add(cam_target, cam_pos, this.scene.camera.direction);
+        // Set view matrix
         glMatrix.mat4.lookAt(this.view_matrix, cam_pos, cam_target, cam_up);
 
         this.Render();
@@ -84,19 +95,21 @@ class GlApp {
 
         // draw all models --> note you need to properly select shader here
         for (let i = 0; i < this.scene.models.length; i ++) {
+            // Set the shader name
             var theShader = this.algorithm + "_" + this.scene.models[i].shader;
+
             this.gl.useProgram(this.shader[theShader].program);
             console.log(theShader);
             console.log(this.scene.light.ambient);
             console.log(this.shader[theShader].uniform);
             console.log(this.gl.getError());
-            //model matrix set
-            // set model matrix
+
+            // Create model transforms
             glMatrix.mat4.identity(this.model_matrix);
             glMatrix.mat4.translate(this.model_matrix, this.model_matrix, this.scene.models[i].center);
             glMatrix.mat4.scale(this.model_matrix, this.model_matrix, this.scene.models[i].size);
 
-            //uploading to graphics card
+            // uploading to graphics card
             // upload color, then  matrices for projection, view, and model
             this.gl.uniform3fv(this.shader[theShader].uniform.light_ambient, this.scene.light.ambient);
 
@@ -211,6 +224,7 @@ shininess: shininess_uniform,
 
         this.LinkShaderProgram(program);
 
+        // Give references to varables on the graphics card so that we can set the value for use in the shaders
         let light_ambient_uniform = this.gl.getUniformLocation(program, 'light_ambient');
 		let light_pos_uniform = this.gl.getUniformLocation(program, 'light_position');
         let light_col_uniform = this.gl.getUniformLocation(program, 'light_color');
