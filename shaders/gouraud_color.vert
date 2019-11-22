@@ -19,5 +19,13 @@ out vec3 diffuse;
 out vec3 specular;
 
 void main() {
+    ambient = light_ambient;
+    mat3 normalModelMatrix = inverse(transpose(mat3(model_matrix)));
+    vec3 normalTransformed = normalize(normalModelMatrix * vertex_normal);
+    vec3 vertexTransformed = vec3(model_matrix * vec4(vertex_position, 1.0));
+    vec3 lightDirection = normalize(light_position - vertexTransformed);
+    diffuse = light_color * clamp(dot(normalTransformed, lightDirection),0.0,1.0);
+
+
     gl_Position = projection_matrix * view_matrix * model_matrix * vec4(vertex_position, 1.0);
 }

@@ -85,7 +85,11 @@ class GlApp {
         // draw all models --> note you need to properly select shader here
         for (let i = 0; i < this.scene.models.length; i ++) {
             var theShader = this.algorithm + "_" + this.scene.models[i].shader;
-
+            this.gl.useProgram(this.shader[theShader].program);
+            console.log(theShader);
+            console.log(this.scene.light.ambient);
+            console.log(this.shader[theShader].uniform);
+            console.log(this.gl.getError());
             //model matrix set
             // set model matrix
             glMatrix.mat4.identity(this.model_matrix);
@@ -94,8 +98,28 @@ class GlApp {
 
             //uploading to graphics card
             // upload color, then  matrices for projection, view, and model
-            this.gl.uniform3fv(this.shader[theShader].uniform.material, this.scene.models[i].material.color);
-            // Lads data to the shaders
+            this.gl.uniform3fv(this.shader[theShader].uniform.light_ambient, this.scene.light.ambient);
+
+            this.gl.uniform3fv(this.shader[theShader].uniform.material_col, this.scene.models[i].material.color);
+            this.gl.uniform1f(this.shader[theShader].uniform.shininess, this.scene.models[i].material.shininess);
+            this.gl.uniform3fv(this.shader[theShader].uniform.material_spec, this.scene.models[i].material.specular);
+
+            //set other things from the shader here
+            this.gl.uniform3fv(this.shader[theShader].uniform.light_pos, this.scene.light.point_lights[0].position);
+            this.gl.uniform3fv(this.shader[theShader].uniform.light_col, this.scene.light.point_lights[0].color);
+
+            this.gl.uniform3fv(this.shader[theShader].uniform.camera_pos, this.scene.camera.position);
+
+/*
+
+material_spec: material_spec_uniform,
+shininess: shininess_uniform,
+
+*/
+
+
+
+            // adds data to the shaders
             // accessing shaders variable
             this.gl.uniformMatrix4fv(this.shader[theShader].uniform.projection, false, this.projection_matrix);
             this.gl.uniformMatrix4fv(this.shader[theShader].uniform.view, false, this.view_matrix);
