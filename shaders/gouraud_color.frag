@@ -12,5 +12,6 @@ uniform vec3 material_specular; // Ks
 out vec4 FragColor;
 
 void main() {
-    FragColor = vec4(material_color * ambient + material_color * diffuse + material_specular * specular, 1.0);
+    // calculate fragment color with color values clamped
+    FragColor = vec4(clamp(material_color * ambient + material_color * diffuse + material_specular * specular, 0.0, 1.0), 1.0);
 }

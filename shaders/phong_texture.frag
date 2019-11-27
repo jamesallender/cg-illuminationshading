@@ -1,5 +1,8 @@
 #version 300 es
 
+// same as a color shader, the only thing that is different is the material color is the texel color * the material color
+// Do entire lighting equation in here using the passed in normal and position
+
 precision mediump float;
 
 in vec3 ambient;

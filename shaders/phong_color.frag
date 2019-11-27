@@ -1,5 +1,7 @@
 #version 300 es
 
+// Do entire lighting equation in here using the passed in normal and position
+
 precision mediump float;
 
 in vec3 frag_pos;

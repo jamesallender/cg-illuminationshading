@@ -1,5 +1,8 @@
 #version 300 es
 
+// Just calculate the verex normal and position to be interpolated for use in the frag shader to calculate light with
+// same as a color shader, the only thing that is different is the material color is the texel color * the material color
+
 precision highp float;
 
 in vec3 vertex_position;
