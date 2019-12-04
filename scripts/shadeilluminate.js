@@ -75,7 +75,7 @@ class GlApp {
 
     InitializeTexture(image_url) {
         // create a texture, and upload a temporary 1px white RGBA array [255,255,255,255]
-        let texture;
+        let texture = this.gl.createTexture();
 
         // load the actual image
         let image = new Image();
@@ -84,10 +84,8 @@ class GlApp {
             this.UpdateTexture(texture, image);
         }, false);
         image.src = image_url;
-    }
 
-    UpdateTexture(texture, image_element) {
-
+        return texture;
     }
 
     Render() {
