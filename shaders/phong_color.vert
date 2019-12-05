@@ -1,6 +1,6 @@
 #version 300 es
 
-// Just calculate the verex normal and position to be interpolated for use in the frag shader to calculate light with
+// Just calculate the vertex normal and position to be interpolated for use in the frag shader to calculate light with
 
 precision highp float;
 

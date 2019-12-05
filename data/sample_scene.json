@@ -14,7 +14,7 @@
                 "shininess": 1
             },
             "texture": {
-                "url": "images/Checker.jpg",
+                "url": "images/Checkered.jpg",
                 "scale": [4, 4]
             },
             "center": [0.0, 0.0, 0.0],
