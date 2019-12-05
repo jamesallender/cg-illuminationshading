@@ -1,6 +1,6 @@
 #version 300 es
 
-// Just calculate the vertex normal and position to be interpolated for use in the frag shader to calculate light with
+// Just calculate the verex normal and position to be interpolated for use in the frag shader to calculate light with
 
 precision highp float;
 
@@ -18,5 +18,14 @@ out vec3 frag_pos;
 out vec3 frag_normal;
 
 void main() {
+    // calculate our matrix to transform, our normal vector
+    mat3 normalModelMatrix = inverse(transpose(mat3(model_matrix)));
+    // transform normal to world position and normalize
+    frag_normal = normalize(normalModelMatrix * vertex_normal);
+
+    // transform vertex to world position
+    frag_pos = vec3(model_matrix * vec4(vertex_position, 1.0));
+
+
     gl_Position = projection_matrix * view_matrix * model_matrix * vec4(vertex_position, 1.0);
 }

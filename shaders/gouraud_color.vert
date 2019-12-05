@@ -43,8 +43,10 @@ void main() {
     // this is the manual r alternative
     // vec3 reflectLightDir =  2.0 * dot(normalTransformed, lightDirection) * normalTransformed;
     // vec3 r = normalize(reflectLightDir - lightDirection);
+
+    
     // Calculate reflection vector
-    vec3 r = reflect(-lightDirection, normalTransformed);
+    vec3 r = normalize(reflect(-lightDirection, normalTransformed));
     // Calculate view direction
     vec3 viewDirection = normalize(camera_position - vertexTransformed); // v
     // Calculate specular intensity
