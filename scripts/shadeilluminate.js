@@ -77,6 +77,10 @@ class GlApp {
         // create a texture, and upload a temporary 1px white RGBA array [255,255,255,255]
         let texture = this.gl.createTexture();
 
+        // set up paramaters for texture slide 7
+
+        // make it a white slide 12
+
         // load the actual image
         let image = new Image();
         image.crossOrigin = 'anonymous';
@@ -89,7 +93,12 @@ class GlApp {
     }
 
     UpdateTexture(texture, image_element){
+        // update the texture from the downloadedd texture
 
+        // add image to texture slide 11
+
+        // re render scene with new texture
+        this.Render();
     }
 
     Render() {
@@ -110,6 +119,13 @@ class GlApp {
             glMatrix.mat4.identity(this.model_matrix);
             glMatrix.mat4.translate(this.model_matrix, this.model_matrix, this.scene.models[i].center);
             glMatrix.mat4.scale(this.model_matrix, this.model_matrix, this.scene.models[i].size);
+
+
+
+            // add uniform for texture slide 14
+            // access texture from the scene.model[i].texture.id
+
+
 
             // uploading to graphics card
             // upload color, then  matrices for projection, view, and model
@@ -134,16 +150,6 @@ class GlApp {
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
-
-            //stuff for texture shaders
-
-//            this.gl.uniform2fv(this.shader[theShader].uniform.tex_scale, this.scene.texture.scale);
-//            image: image_uniform, <------ need to send the image
-
-
-
-
-
         }
 
         // draw all light sources
