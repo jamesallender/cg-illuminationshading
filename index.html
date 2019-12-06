@@ -68,11 +68,11 @@
             var reader = new FileReader();
             reader.onload = (event) => {
                 let new_scene = JSON.parse(event.target.result);
-                glMatrix.vec3.set(scene.camera.position, new_scene.camera.position[0], 
+                glMatrix.vec3.set(scene.camera.position, new_scene.camera.position[0],
                                   new_scene.camera.position[1], new_scene.camera.position[2]);
-                glMatrix.vec3.set(scene.camera.direction, new_scene.camera.direction[0], 
+                glMatrix.vec3.set(scene.camera.direction, new_scene.camera.direction[0],
                                   new_scene.camera.direction[1], new_scene.camera.direction[2]);
-                glMatrix.vec3.set(scene.camera.up, new_scene.camera.up[0], 
+                glMatrix.vec3.set(scene.camera.up, new_scene.camera.up[0],
                                   new_scene.camera.up[1], new_scene.camera.up[2]);
 
                 scene.models = [];
@@ -81,17 +81,17 @@
                     m.type = new_scene.models[i].type;
                     m.shader = new_scene.models[i].shader;
                     m.material = {};
-                    m.material.color = glMatrix.vec3.fromValues(new_scene.models[i].material.color[0], 
+                    m.material.color = glMatrix.vec3.fromValues(new_scene.models[i].material.color[0],
                                                                 new_scene.models[i].material.color[1],
                                                                 new_scene.models[i].material.color[2]);
-                    m.material.specular = glMatrix.vec3.fromValues(new_scene.models[i].material.specular[0], 
+                    m.material.specular = glMatrix.vec3.fromValues(new_scene.models[i].material.specular[0],
                                                                    new_scene.models[i].material.specular[1],
                                                                    new_scene.models[i].material.specular[2]);
                     m.material.shininess = new_scene.models[i].material.shininess;
-                    m.center = glMatrix.vec3.fromValues(new_scene.models[i].center[0], 
+                    m.center = glMatrix.vec3.fromValues(new_scene.models[i].center[0],
                                                         new_scene.models[i].center[1],
                                                         new_scene.models[i].center[2]);
-                    m.size = glMatrix.vec3.fromValues(new_scene.models[i].size[0], 
+                    m.size = glMatrix.vec3.fromValues(new_scene.models[i].size[0],
                                                       new_scene.models[i].size[1],
                                                       new_scene.models[i].size[2]);
                     if (m.shader === 'texture') {
@@ -104,7 +104,7 @@
                     scene.models.push(m);
                 }
 
-                glMatrix.vec3.set(scene.light.ambient, new_scene.light.ambient[0], 
+                glMatrix.vec3.set(scene.light.ambient, new_scene.light.ambient[0],
                                   new_scene.light.ambient[1], new_scene.light.ambient[2]);
                 scene.light.point_lights = [];
                 for (let i = 0; i < new_scene.light.point_lights.length; i++) {
@@ -206,7 +206,7 @@
             if (r.length < 2) r = '0' + r;
             if (g.length < 2) g = '0' + g;
             if (b.length < 2) b = '0' + b;
-            return '#' + r + g + b; 
+            return '#' + r + g + b;
         }
     </script>
 </head>

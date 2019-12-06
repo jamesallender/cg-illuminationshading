@@ -124,16 +124,6 @@ class GlApp {
             this.gl.uniform3fv(this.shader[theShader].uniform.light_col, this.scene.light.point_lights[0].color);
 
             this.gl.uniform3fv(this.shader[theShader].uniform.camera_pos, this.scene.camera.position);
-
-/*
-
-material_spec: material_spec_uniform,
-shininess: shininess_uniform,
-
-*/
-
-
-
             // adds data to the shaders
             // accessing shaders variable
             this.gl.uniformMatrix4fv(this.shader[theShader].uniform.projection, false, this.projection_matrix);
@@ -144,10 +134,21 @@ shininess: shininess_uniform,
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
+
+            //stuff for texture shaders
+
+//            this.gl.uniform2fv(this.shader[theShader].uniform.tex_scale, this.scene.texture.scale);
+//            image: image_uniform, <------ need to send the image
+
+
+
+
+
         }
 
         // draw all light sources
         for (let i = 0; i < this.scene.light.point_lights.length; i ++) {
+            console.log("point light: " + i);
             this.gl.useProgram(this.shader['emissive'].program);
 
             glMatrix.mat4.identity(this.model_matrix);
