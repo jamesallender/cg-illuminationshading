@@ -77,9 +77,18 @@ class GlApp {
         // create a texture, and upload a temporary 1px white RGBA array [255,255,255,255]
         let texture = this.gl.createTexture();
 
-        // set up paramaters for texture slide 7
+        // set up paramaters for texture and make white slide 7 & 12
+        this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.LINEAR);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER, this.gl.LINEAR_MIPMAP_NEAREST);
+        // look at
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
+        this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
 
-        // make it a white slide 12
+        // make white (maybe black?)
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, 1, 1, 0, this.gl.RGBA, this.gl.UNSIGNED_BYTE, new Uint8Array([255,255,255,255]));
+
+        this.gl.bindTexture(this.gl.TEXTURE_2D, null);
 
         // load the actual image
         let image = new Image();
@@ -93,9 +102,12 @@ class GlApp {
     }
 
     UpdateTexture(texture, image_element){
-        // update the texture from the downloadedd texture
-
-        // add image to texture slide 11
+        // update the texture from the downloaded texture
+        // add image to texture slide 7 & 11
+        this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
+        this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
+        this.gl.generateMipmap(this.gl.TEXTURE_2D);
+        this.gl.bindTexture(this.gl.TEXTURE_2D, null);
 
         // re render scene with new texture
         this.Render();
@@ -121,10 +133,15 @@ class GlApp {
             glMatrix.mat4.scale(this.model_matrix, this.model_matrix, this.scene.models[i].size);
 
 
-
-            // add uniform for texture slide 14
-            // access texture from the scene.model[i].texture.id
-
+            if (theShader.includes("texture")) {
+                console.log("texture");
+                // add uniform for texture slide 14
+                // access texture from the scene.model[i].texture.id
+                this.gl.activeTexture(this.gl.TEXTURE0);
+                this.gl.bindTexture(this.gl.TEXTURE_2D, this.scene.models[i].texture.id);
+                this.gl.uniform1i(this.shader[theShader].uniform.image, 0);
+                this.gl.uniform2fv(this.shader[theShader].uniform.tex_scale, this.scene.models[i].texture.scale);
+            }
 
 
             // uploading to graphics card
@@ -150,6 +167,9 @@ class GlApp {
             this.gl.bindVertexArray(this.vertex_array[this.scene.models[i].type]);
             this.gl.drawElements(this.gl.TRIANGLES, this.vertex_array[this.scene.models[i].type].face_index_count, this.gl.UNSIGNED_SHORT, 0);
             this.gl.bindVertexArray(null);
+            if (theShader.includes("texture")) {
+                this.gl.bindTexture(this.gl.TEXTURE_2D, null);
+            }
         }
 
         // draw all light sources

@@ -19,5 +19,6 @@ void main() {
     vec3 texel_color = vec3(texture(image, frag_texcoord));
     // calculate fragment color with color values clamped
     // color for pixel is the color of the texel * the color of the material
-    FragColor = vec4(clamp((material_color * texel_color) * ambient + (material_color * texel_color) * diffuse + (material_color * texel_color) * specular, 0.0, 1.0), 1.0);
+    FragColor = vec4(clamp((material_color * texel_color) * ambient + (material_color * texel_color) * diffuse + material_specular * specular, 0.0, 1.0), 1.0);
+    // FragColor = vec4(texel_color, 1);
 }
