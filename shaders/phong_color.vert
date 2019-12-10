@@ -26,6 +26,5 @@ void main() {
     // transform vertex to world position
     frag_pos = vec3(model_matrix * vec4(vertex_position, 1.0));
 
-
     gl_Position = projection_matrix * view_matrix * model_matrix * vec4(vertex_position, 1.0);
 }

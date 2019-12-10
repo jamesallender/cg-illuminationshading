@@ -19,6 +19,15 @@ out vec3 frag_normal;
 out vec2 frag_texcoord;
 
 void main() {
+    // calculate our matrix to transform, our normal vector
+    mat3 normalModelMatrix = inverse(transpose(mat3(model_matrix)));
+    // transform normal to world position and normalize
+    frag_normal = normalize(normalModelMatrix * vertex_normal);
+
+    // transform vertex to world position
+    frag_pos = vec3(model_matrix * vec4(vertex_position, 1.0));
+
     gl_Position = projection_matrix * view_matrix * model_matrix * vec4(vertex_position, 1.0);
+
     frag_texcoord = vertex_texcoord * texture_scale;
 }
