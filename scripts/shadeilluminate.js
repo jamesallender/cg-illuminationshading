@@ -130,7 +130,17 @@ class GlApp {
             // Create model transforms
             glMatrix.mat4.identity(this.model_matrix);
             glMatrix.mat4.translate(this.model_matrix, this.model_matrix, this.scene.models[i].center);
+            if (this.scene.models[i].hasOwnProperty("rotate_x")){
+                glMatrix.mat4.rotateX(this.model_matrix, this.model_matrix, this.scene.models[i].rotate_x);
+            }
+            if (this.scene.models[i].hasOwnProperty("rotate_y")){
+                glMatrix.mat4.rotateY(this.model_matrix, this.model_matrix, this.scene.models[i].rotate_y);
+            }
+            if (this.scene.models[i].hasOwnProperty("rotate_z")){
+                glMatrix.mat4.rotateZ(this.model_matrix, this.model_matrix, this.scene.models[i].rotate_z);
+            }
             glMatrix.mat4.scale(this.model_matrix, this.model_matrix, this.scene.models[i].size);
+
 
 
             if (theShader.includes("texture")) {

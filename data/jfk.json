@@ -1,8 +1,8 @@
 {
     "camera": {
-        "position": [8.0, -3.0, -8.0],
-        "direction": [-1.0, 0.0, 1.0],
-        "up": [0.0, -1.0, 0.0]
+        "position": [-8.0, 3.0, -8.0],
+        "direction": [1.0, 0.0, 1.0],
+        "up": [0.0, 1.0, 0.0]
     },
     "models": [
         {
@@ -20,20 +20,6 @@
             "center": [0.0, 0.0, 0.0],
             "size": [8.0, 1.0, 8.0]
         },{
-            "type": "plane",
-            "shader": "texture",
-            "material": {
-                "color": [1.0, 1.0, 1.0],
-                "specular": [0.0, 0.0, 0.0],
-                "shininess": 1
-            },
-            "texture": {
-                "url": "images/ground.png",
-                "scale": [1, 1]
-            },
-            "center": [0.0, -4.0, -4.0],
-            "size": [1.0, 8.0, 8.0]
-        },{
             "type": "cube",
             "shader": "texture",
             "material": {
@@ -45,8 +31,36 @@
                 "url": "images/bookrepo.jpg",
                 "scale": [1, 1]
             },
-            "center": [-2.5, -1.5, 2.5],
+            "center": [2.5, 1.5, 2.5],
             "size": [3.0, 3.0, 3.0]
+        },{
+            "type": "cube",
+            "shader": "texture",
+            "material": {
+                "color": [1.0, 1.0, 1.0],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 32
+            },
+            "texture": {
+                "url": "images/sawin.png",
+                "scale": [1, 1]
+            },
+            "center": [2.5, 1.5, 2.56],
+            "size": [2.9, 2.9, 2.9]
+        },{
+            "type": "cube",
+            "shader": "texture",
+            "material": {
+                "color": [1.0, 1.0, 1.0],
+                "specular": [1.0, 1.0, 1.0],
+                "shininess": 32
+            },
+            "texture": {
+                "url": "images/meyr.png",
+                "scale": [1, 1]
+            },
+            "center": [2.56, 1.5, 2.5],
+            "size": [2.9, 2.9, 2.9]
         },
         {
             "type": "cube",
@@ -60,7 +74,7 @@
                 "url": "images/car2.png",
                 "scale": [1, 1]
             },
-            "center": [2.0, -0.1, -1.0],
+            "center": [-2.0, 0.1, -1.0],
             "size": [1.0, 0.2, 2.0]
         },
         {
@@ -75,7 +89,7 @@
                 "url": "images/car_grill.png",
                 "scale": [1, 1]
             },
-            "center": [2.0, -0.101, -1.001],
+            "center": [-2.0, 0.101, -1.001],
             "size": [0.99, 0.2, 2.0]
         },{
             "type": "cube",
@@ -89,7 +103,7 @@
                 "url": "images/car_back.png",
                 "scale": [1, 1]
             },
-            "center": [2.0, -0.1, -0.99],
+            "center": [-2.0, 0.1, -0.99],
             "size": [0.99, 0.2, 2.0]
         },
         {
@@ -104,7 +118,7 @@
                 "url": "images/car_top_side.png",
                 "scale": [1, 1]
             },
-            "center": [2.0, -0.25, -1.0],
+            "center": [-2.0, 0.25, -1.0],
             "size": [1.0, 0.1, 1.0]
         },
         {
@@ -115,15 +129,20 @@
                 "specular": [0.0, 0.0, 0.0],
                 "shininess": 32
             },
-            "center": [-3.0, -1, -2.0],
-            "size": [0.1, 0.1, 4.0]
+            "center": [-3.0, 1, -2.0],
+            "size": [0.01, 0.01, 4.0],
+            "rotate_x": [1.0, 0.0, 0.1]
         }
     ],
     "light": {
         "ambient": [0.15, 0.15, 0.15],
         "point_lights": [
             {
-                "position": [3.0, -6.0, -2.0],
+                "position": [-3.0, 6.0, -2.0],
+                "color": [1.0, 1.0, 1.0]
+            },
+            {
+                "position": [8.0, 1.5, 8.0],
                 "color": [1.0, 1.0, 1.0]
             }
         ]
