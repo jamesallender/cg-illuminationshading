@@ -152,6 +152,7 @@ class GlApp {
             this.gl.uniform1f(this.shader[theShader].uniform.shininess, this.scene.models[i].material.shininess);
             this.gl.uniform3fv(this.shader[theShader].uniform.material_spec, this.scene.models[i].material.specular);
 
+            this.gl.uniform3fv[10]((this.shader[theShader].uniform.light_pos, [-1, -1, -1, -1, -1, -1, -1 ,-1 ,-1, -1]);
             //set other things from the shader here
             this.gl.uniform3fv(this.shader[theShader].uniform.light_pos, this.scene.light.point_lights[0].position);
             this.gl.uniform3fv(this.shader[theShader].uniform.light_col, this.scene.light.point_lights[0].color);
