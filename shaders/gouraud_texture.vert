@@ -9,8 +9,8 @@ in vec3 vertex_normal;
 in vec2 vertex_texcoord;
 
 uniform vec3 light_ambient;
-uniform vec3 light_position;
-uniform vec3 light_color;
+uniform vec3 light_position[10];
+uniform vec3 light_color[10];
 uniform vec3 camera_position;
 uniform float material_shininess;
 uniform vec2 texture_scale;
@@ -39,6 +39,7 @@ void main() {
     // transform vertex to world position
     vec3 vertexTransformed = vec3(model_matrix * vec4(vertex_position, 1.0));
     // calculate light direction vector
+
     vec3 lightDirection = normalize(light_position - vertexTransformed); // l
 
     // calculate diffuse intensity

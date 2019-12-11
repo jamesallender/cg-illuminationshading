@@ -19,8 +19,21 @@
             },
             "center": [0.0, 0.0, 0.0],
             "size": [8.0, 1.0, 8.0]
-        },
-        {
+        },{
+            "type": "plane",
+            "shader": "texture",
+            "material": {
+                "color": [1.0, 1.0, 1.0],
+                "specular": [0.0, 0.0, 0.0],
+                "shininess": 1
+            },
+            "texture": {
+                "url": "images/ground.png",
+                "scale": [1, 1]
+            },
+            "center": [0.0, -4.0, -4.0],
+            "size": [1.0, 8.0, 8.0]
+        },{
             "type": "cube",
             "shader": "texture",
             "material": {

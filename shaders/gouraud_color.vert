@@ -10,8 +10,8 @@ in vec3 vertex_normal;
 
 // these are the model specific values that do not change
 uniform vec3 light_ambient;
-uniform vec3 light_position;
-uniform vec3 light_color;
+uniform vec3 light_position[10];
+uniform vec3 light_color[10];
 uniform vec3 camera_position;
 uniform float material_shininess; // n
 uniform mat4 model_matrix;

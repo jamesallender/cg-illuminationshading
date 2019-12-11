@@ -8,8 +8,8 @@ in vec3 frag_pos;
 in vec3 frag_normal;
 
 uniform vec3 light_ambient;
-uniform vec3 light_position;
-uniform vec3 light_color;
+uniform vec3 light_position[10];
+uniform vec3 light_color[10];
 uniform vec3 camera_position;
 uniform vec3 material_color;      // Ka and Kd
 uniform vec3 material_specular;   // Ks
