@@ -144,8 +144,7 @@ class GlApp {
 
 
             if (theShader.includes("texture")) {
-                console.log("texture");
-                // add uniform for texture slide 14
+                // add uniform for text ure slide 14
                 // access texture from the scene.model[i].texture.id
                 this.gl.activeTexture(this.gl.TEXTURE0);
                 this.gl.bindTexture(this.gl.TEXTURE_2D, this.scene.models[i].texture.id);
@@ -187,7 +186,6 @@ class GlApp {
 
         // draw all light sources
         for (let i = 0; i < this.scene.light.point_lights.length; i ++) {
-            console.log("point light: " + i);
             this.gl.useProgram(this.shader['emissive'].program);
 
             glMatrix.mat4.identity(this.model_matrix);
