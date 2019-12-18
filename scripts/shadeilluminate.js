@@ -74,6 +74,7 @@ class GlApp {
     }
 
     InitializeTexture(image_url) {
+        console.log("trying to load: " + image_url);
         // create a texture, and upload a temporary 1px white RGBA array [255,255,255,255]
         let texture = this.gl.createTexture();
 
@@ -94,20 +95,23 @@ class GlApp {
         let image = new Image();
         image.crossOrigin = 'anonymous';
         image.addEventListener('load', (event) => {
-            this.UpdateTexture(texture, image);
+            this.UpdateTexture(texture, image, image_url);
         }, false);
         image.src = image_url;
 
         return texture;
     }
 
-    UpdateTexture(texture, image_element){
+    UpdateTexture(texture, image_element, image_url){
         // update the texture from the downloaded texture
         // add image to texture slide 7 & 11
+        console.log("Updateing: " + image_url);
         this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
         this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGBA, this.gl.RGBA, this.gl.UNSIGNED_BYTE, image_element);
         this.gl.generateMipmap(this.gl.TEXTURE_2D);
         this.gl.bindTexture(this.gl.TEXTURE_2D, null);
+
+        console.log("update error: " + this.gl.getError());
 
         // re render scene with new texture
         this.Render();
@@ -123,8 +127,8 @@ class GlApp {
 
             this.gl.useProgram(this.shader[theShader].program);
             console.log(theShader);
-            console.log(this.scene.light.ambient);
-            console.log(this.shader[theShader].uniform);
+            // console.log(this.scene.light.ambient);
+            // console.log(this.shader[theShader].uniform);
             console.log(this.gl.getError());
 
             // Create model transforms
