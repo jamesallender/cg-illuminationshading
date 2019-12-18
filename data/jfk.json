@@ -14,6 +14,21 @@
                 "shininess": 1
             },
             "texture": {
+                "url": "images/dis.png",
+                "scale": [1, 1]
+            },
+            "center": [-20.0, 8.0, -20.0],
+            "size": [25, 4, 0.1],
+            "rotate_y": 45
+        },{
+            "type": "cube",
+            "shader": "texture",
+            "material": {
+                "color": [1.0, 1.0, 1.0],
+                "specular": [0.0, 0.0, 0.0],
+                "shininess": 1
+            },
+            "texture": {
                 "url": "images/who.png",
                 "scale": [1, 1]
             },
