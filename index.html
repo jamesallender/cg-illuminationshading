@@ -34,8 +34,8 @@
                             size: glMatrix.vec3.fromValues(8.0, 1.0, 8.0)  // width, 1.0, depth
                         },
                         {
+                            // type: 'cube',
                             type: 'sphere',
-                            //type: 'cube',
                             shader: 'color',
                             material: {
                                 color: glMatrix.vec3.fromValues(0.1, 0.4, 0.9),  // red, green, blue
@@ -95,6 +95,17 @@
                     m.size = glMatrix.vec3.fromValues(new_scene.models[i].size[0],
                                                       new_scene.models[i].size[1],
                                                       new_scene.models[i].size[2]);
+
+                    if (new_scene.models[i].hasOwnProperty("rotate_x")){
+                        m.rotate_x = new_scene.models[i].rotate_x
+                    }
+                    if (new_scene.models[i].hasOwnProperty("rotate_y")){
+                        m.rotate_y = new_scene.models[i].rotate_y
+                    }
+                    if (new_scene.models[i].hasOwnProperty("rotate_z")){
+                        m.rotate_z = new_scene.models[i].rotate_z
+                    }
+
                     if (m.shader === 'texture') {
                         m.texture = {};
                         m.texture.url = new_scene.models[i].texture.url;

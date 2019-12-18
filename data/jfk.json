@@ -1,11 +1,39 @@
 {
     "camera": {
-        "position": [-8.0, 1.5, -8.0],
+        "position": [-7.7, 1.5, -7.7],
         "direction": [1.0, 0.0, 1.0],
         "up": [0.0, 1.0, 0.0]
     },
     "models": [
         {
+            "type": "cube",
+            "shader": "texture",
+            "material": {
+                "color": [1.0, 1.0, 1.0],
+                "specular": [0.0, 0.0, 0.0],
+                "shininess": 1
+            },
+            "texture": {
+                "url": "images/date.png",
+                "scale": [1, 1]
+            },
+            "center": [-1.5, 1.0, 5.2],
+            "size": [5, 1, 0.1]
+        },{
+            "type": "cube",
+            "shader": "texture",
+            "material": {
+                "color": [1.0, 1.0, 1.0],
+                "specular": [0.0, 0.0, 0.0],
+                "shininess": 1
+            },
+            "texture": {
+                "url": "images/loc.png",
+                "scale": [1, 1]
+            },
+            "center": [5.2, 1.0, -1.5],
+            "size": [0.1, 1, 5.0]
+        },{
             "type": "plane",
             "shader": "texture",
             "material": {
@@ -38,16 +66,18 @@
             "shader": "texture",
             "material": {
                 "color": [1.0, 1.0, 1.0],
-                "specular": [1.0, 1.0, 1.0],
-                "shininess": 32
+                "specular": [0.0, 0.0, 0.0],
+                "shininess": 1
             },
             "texture": {
                 "url": "images/sawin.png",
                 "scale": [1, 1]
             },
-            "center": [2.75, 1.25, 2.85],
-            "size": [2.4, 2.4, 2.4]
-        },{
+            "center": [2.76, 1.24, 2.76],
+            "size": [2.5, 2.5, 2.5]
+        },
+
+        {
             "type": "cube",
             "shader": "texture",
             "material": {
@@ -56,11 +86,27 @@
                 "shininess": 32
             },
             "texture": {
+                "url": "images/the_nowll.png",
+                "scale": [1, 1]
+            },
+            "center": [-0.1, 0.5, -1.5],
+            "size": [0.01, 1, 4.5],
+            "rotate_y": 30
+        },{
+            "type": "cube",
+            "shader": "texture",
+            "material": {
+                "color": [1.0, 1.0, 1.0],
+                "specular": [0.0, 0.0, 0.0],
+                "shininess": 1
+            },
+            "texture": {
                 "url": "images/meyr.png",
                 "scale": [1, 1]
             },
-            "center": [2.85, 1.25, 2.75],
-            "size": [2.4, 2.4, 2.4]
+            "center": [-0.09, 0.5, -1.5],
+            "size": [0.01, 1, 4.5],
+            "rotate_y": 30
         },
         {
             "type": "cube",
@@ -75,7 +121,8 @@
                 "scale": [1, 1]
             },
             "center": [-2.0, 0.1, -1.0],
-            "size": [1.0, 0.2, 2.0]
+            "size": [1.0, 0.2, 2.0],
+            "rotate_y": 15
         },
         {
             "type": "cube",
@@ -90,7 +137,8 @@
                 "scale": [1, 1]
             },
             "center": [-2.0, 0.101, -1.001],
-            "size": [0.99, 0.2, 2.0]
+            "size": [0.99, 0.2, 2.0],
+            "rotate_y": 15
         },{
             "type": "cube",
             "shader": "texture",
@@ -104,7 +152,8 @@
                 "scale": [1, 1]
             },
             "center": [-2.0, 0.1, -0.99],
-            "size": [0.99, 0.2, 2.0]
+            "size": [0.99, 0.2, 2.0],
+            "rotate_y": 15
         },
         {
             "type": "cube",
@@ -119,7 +168,8 @@
                 "scale": [1, 1]
             },
             "center": [-2.0, 0.25, -1.0],
-            "size": [1.0, 0.1, 1.0]
+            "size": [1.0, 0.1, 1.0],
+            "rotate_y": 15
         },
         {
             "type": "cube",
@@ -129,20 +179,38 @@
                 "specular": [0.0, 0.0, 0.0],
                 "shininess": 32
             },
-            "center": [-3.0, 1, -2.0],
-            "size": [0.01, 0.01, 4.0],
-            "rotate_x": [1.0, 0.0, 0.1]
+            "center": [-0.5, 1.0, 1.1],
+            "size": [0.01, 0.01, 7.0],
+            "rotate_x": -25,
+            "rotate_y": 35
+        },
+        {
+            "type": "cube",
+            "shader": "color",
+            "material": {
+                "color": [1.0, 0.0, 0.0],
+                "specular": [0.0, 0.0, 0.0],
+                "shininess": 32
+            },
+            "center": [-1.0, 0.3, -0.9],
+            "size": [0.01, 0.01, 2.8],
+            "rotate_x": -20,
+            "rotate_y": 80
         }
     ],
     "light": {
         "ambient": [0.15, 0.15, 0.15],
         "point_lights": [
             {
-                "position": [-3.0, 6.0, -2.0],
+                "position": [-4.5, 4.0, -2.0],
                 "color": [1.0, 1.0, 1.0]
             },
             {
-                "position": [8.0, 1.25, 8.0],
+                "position": [8.0, -0.55, 8.0],
+                "color": [1.0, 1.0, 1.0]
+            },
+            {
+                "position": [1.7, -0.1, -1.7],
                 "color": [1.0, 1.0, 1.0]
             }
         ]
