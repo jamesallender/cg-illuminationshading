@@ -127,8 +127,8 @@ class GlApp {
 
             this.gl.useProgram(this.shader[theShader].program);
             console.log(theShader);
-            // console.log(this.scene.light.ambient);
-            // console.log(this.shader[theShader].uniform);
+            console.log(this.scene.light.ambient);
+            console.log(this.shader[theShader].uniform);
             console.log(this.gl.getError());
 
             // Create model transforms
