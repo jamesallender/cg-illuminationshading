@@ -86,7 +86,7 @@
                 "shininess": 32
             },
             "texture": {
-                "url": "images/bookrepo.jpg",
+                "url": "images/bookrepo.jpeg",
                 "scale": [1, 1]
             },
             "center": [2.75, 1.25, 2.75],
